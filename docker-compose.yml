@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    image: youtube-downloader-frontend:latest
+    container_name: youtube-downloader-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    image: youtube-downloader-backend:latest
+    container_name: youtube-downloader-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/backend
+      - videos:/backend/downloads
+
+volumes:
+  videos:
