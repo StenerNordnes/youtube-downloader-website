@@ -7,6 +7,7 @@ import os
 
 def delete_oldest_download():
     downloads = os.listdir("downloads")
+    print("Number of files:", len(downloads))
     if len(downloads) > 5:
         oldest = sorted(downloads, key=lambda x: os.path.getctime(f"downloads/{x}"))[0]
         os.remove(f"downloads/{oldest}")
@@ -36,6 +37,8 @@ async def download_video(request: Request):
         "resolution"
     ).desc().first().download("downloads")
 
+    delete_oldest_download()
+
     return {
         "status": "success",
         "download_link": f"/api/video/{yt.title}.mp4",
@@ -51,8 +54,6 @@ async def get_video(video_name: str):
         res = FileResponse(f"downloads/{video_name}", media_type="video/mp4")
     except FileNotFoundError:
         return {"status": "error", "message": "File not found"}
-    finally:
-        delete_oldest_download()
 
     return res
 
