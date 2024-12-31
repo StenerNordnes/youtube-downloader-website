@@ -44,7 +44,7 @@ youtube-downloader-website/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/youtube-downloader-website.git
+git clone https://github.com/StenerNordnes/youtube-downloader-website.git
 cd youtube-downloader-website
 ```
 
