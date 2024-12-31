@@ -33,7 +33,6 @@ youtube-downloader-website/
 │   ├── app/
 │   ├── components/
 │   ├── Dockerfile.frontend
-│   ├── pages/
 │   ├── .env
 ├── docker-compose.yml
 ├── README.md
