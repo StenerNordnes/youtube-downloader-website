@@ -19,11 +19,6 @@ def delete_oldest_download():
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
 @app.post("/api/download")
 async def download_video(request: Request):
     body = await request.json()
